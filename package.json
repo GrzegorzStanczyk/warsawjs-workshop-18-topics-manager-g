@@ -30,6 +30,7 @@
   "dependencies": {
     "bulma": "^0.6.2",
     "hellojs": "^2.0.0-4",
+    "mustache": "^2.3.0",
     "node-sass": "^4.7.2",
     "parcel-bundler": "^1.6.2"
   }

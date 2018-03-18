@@ -2,6 +2,8 @@ import Helpers from './helpers'
 import config from './config'
 import hello from 'hellojs'
 import Bulma from 'bulma'
+import Mustache from 'Mustache'
+import './css.scss'
 
 hello.init({
   github: config.client_id
@@ -10,6 +12,9 @@ hello.init({
 })
 
 const githubAuthLink = document.querySelector('#gitHub-login')
+const taskInput = document.querySelector('#task-input')
+const taskTitle = document.querySelector('#task-title')
+const addNewTaskBtn = document.querySelector('#add-new-task')
 
 githubAuthLink.addEventListener('click', (e) => {
   e.preventDefault()
@@ -17,22 +22,24 @@ githubAuthLink.addEventListener('click', (e) => {
 })
 
 const github = hello('github')
+let userAvatarUrl
 
 const login = () => {
   github.login().then(e => {
     return github.api('/me').then(e => {
+      userAvatarUrl = e.avatar_url
       const githubUserName = document.querySelector('#user-panel')
       const githubUserAvatar = document.querySelector('#avatar')
       githubUserName.textContent = e.login
       githubUserAvatar.src = e.avatar_url
+
+      addNewTaskBtn.setAttribute('title', 'Accept button')
+      addNewTaskBtn.removeAttribute('disabled')
     })
   }, function (e) {
     console.log('error', e)
   })
 }
-
-const taskInput = document.querySelector('#task-input')
-const addNewTaskBtn = document.querySelector('#add-new-task')
 
 taskInput.addEventListener('keydown', e => {
   if (e.keyCode == 13) {
@@ -43,25 +50,46 @@ taskInput.addEventListener('keydown', e => {
 addNewTaskBtn.addEventListener('click', e => {
   createNewTask()
 })
+const card = document.createElement('div')
 
 const createNewTask = () => {
   const tasksList = document.querySelector('#tasks-list')
-  if (taskInput.value.length <= 0) {
+  if (taskInput.value.length <= 0 || taskTitle.value.length <= 0) {
     return
   }
-  const task = document.createElement('li')
-  const card = document.createElement('div')
+
+  
   const cardContent = document.createElement('div')
-  const cardTitle = document.createElement('p')
+  cardContent.classList.add('column', 'is-3')
+  
+  var output = Mustache.render(template, {
+    title: taskTitle.value,
+    description: taskInput.value
+  });
+  cardContent.innerHTML = output
 
+  tasksList.appendChild(cardContent)
 
-  task.classList.add('column')
-  card.classList.add('card')
-  cardContent.classList.add('card-content')
-  cardTitle.textContent = taskInput.value
-  cardContent.appendChild(cardTitle)
-  card.appendChild(cardContent)
-  task.appendChild(card)
-  tasksList.appendChild(task)
   taskInput.value = ''
+  taskTitle.value = ''
 }
+
+var template = 
+`
+  <div class="card">
+      <header class="card-header">
+          <p class="card-header-title">
+              {{title}}
+          </p>
+      </header>
+      <div class="card-content">
+          <div class="content">
+              {{description}}
+          </div>
+      </div>
+      <footer class="card-footer">
+          <a href="#" class="card-footer-item">Zagłosuj</a>
+          <a href="#" class="card-footer-item">Chcę być trenerem</a>
+      </footer>
+  </div>
+`
