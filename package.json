@@ -1,0 +1,19 @@
+{
+  "name": "warsawjs-workshop-18-topics-manager-g",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g.git"
+  },
+  "author": "Stanczyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g/issues"
+  },
+  "homepage": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g#readme"
+}
