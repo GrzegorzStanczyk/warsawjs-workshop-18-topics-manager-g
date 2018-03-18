@@ -15,6 +15,7 @@ const githubAuthLink = document.querySelector('#gitHub-login')
 const taskInput = document.querySelector('#task-input')
 const taskTitle = document.querySelector('#task-title')
 const addNewTaskBtn = document.querySelector('#add-new-task')
+const $form = document.querySelector('.js-form-add-topic');
 
 githubAuthLink.addEventListener('click', (e) => {
   e.preventDefault()
@@ -33,7 +34,7 @@ const login = () => {
       githubUserName.textContent = e.login
       githubUserAvatar.src = e.avatar_url
 
-      addNewTaskBtn.setAttribute('title', 'Accept button')
+      // addNewTaskBtn.setAttribute('title', 'Accept button')
       addNewTaskBtn.removeAttribute('disabled')
     })
   }, function (e) {
@@ -48,6 +49,7 @@ taskInput.addEventListener('keydown', e => {
 })
 
 addNewTaskBtn.addEventListener('click', e => {
+  e.preventDefault()
   createNewTask()
 })
 const card = document.createElement('div')
@@ -57,21 +59,20 @@ const createNewTask = () => {
   if (taskInput.value.length <= 0 || taskTitle.value.length <= 0) {
     return
   }
-
   
   const cardContent = document.createElement('div')
   cardContent.classList.add('column', 'is-3')
   
   var output = Mustache.render(template, {
     title: taskTitle.value,
-    description: taskInput.value
+    description: taskInput.value,
+    userAvatarUrl: userAvatarUrl
   });
   cardContent.innerHTML = output
 
   tasksList.appendChild(cardContent)
 
-  taskInput.value = ''
-  taskTitle.value = ''
+  $form.reset()
 }
 
 var template = 
@@ -82,6 +83,7 @@ var template =
               {{title}}
           </p>
       </header>
+      <img class="avatar" src="{{userAvatarUrl}}">
       <div class="card-content">
           <div class="content">
               {{description}}

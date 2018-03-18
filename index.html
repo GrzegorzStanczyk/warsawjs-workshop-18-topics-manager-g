@@ -17,7 +17,7 @@
     </div>
   </nav>
   <section class="section">
-      <div class="columns is-centered">
+      <div class="columns">
           <div class="column is-half">
               <article class="message">
                   <div class="message-header">
@@ -30,7 +30,7 @@
                                   <sup class="has-text-danger">*</sup> Temat
                               </label>
                               <div class="control">
-                                  <input id="task-title" class="input" type="text" name="topic"/>
+                                  <input id="task-title" class="input" type="text" name="topic" required/>
                               </div>
                           </div>
   
@@ -39,13 +39,12 @@
                                   <sup class="has-text-danger">*</sup> Opis
                               </label>
                               <div class="control">
-                                  <textarea id="task-input" class="textarea" name="description"></textarea>
+                                  <textarea id="task-input" class="textarea" name="description" required></textarea>
                               </div>
                           </div>
-  
                           <div class="field is-grouped">
                               <div class="control">
-                                  <button id="add-new-task" role="button" class="button is-link">Prześlij</button>
+                                  <button id="add-new-task" role="button" class="button is-link" disabled>Prześlij</button>
                               </div>
                               <div class="control">
                                   <button class="button is-text" type="reset">Cancel</button>
