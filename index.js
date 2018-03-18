@@ -35,7 +35,6 @@ const taskInput = document.querySelector('#task-input')
 const addNewTaskBtn = document.querySelector('#add-new-task')
 
 taskInput.addEventListener('keydown', e => {
-  console.log(e)
   if (e.keyCode == 13) {
     createNewTask()
   }
@@ -51,8 +50,18 @@ const createNewTask = () => {
     return
   }
   const task = document.createElement('li')
+  const card = document.createElement('div')
+  const cardContent = document.createElement('div')
+  const cardTitle = document.createElement('p')
+
+
   task.classList.add('column')
-  task.textContent = taskInput.value
+  card.classList.add('card')
+  cardContent.classList.add('card-content')
+  cardTitle.textContent = taskInput.value
+  cardContent.appendChild(cardTitle)
+  card.appendChild(cardContent)
+  task.appendChild(card)
   tasksList.appendChild(task)
   taskInput.value = ''
 }
