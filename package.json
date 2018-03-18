@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g/issues"
   },
-  "homepage": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g#readme"
+  "homepage": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g#readme",
+  "devDependencies": {
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.6.2"
+  }
 }
