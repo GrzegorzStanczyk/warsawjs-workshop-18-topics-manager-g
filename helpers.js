@@ -1,7 +1,5 @@
 class Helpers {
-  constructor() {}
-
-  static test() {
+  static get test () {
     return 'HELLO'
   }
 }

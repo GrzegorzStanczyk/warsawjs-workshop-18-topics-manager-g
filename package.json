@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard --fix && parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -14,6 +14,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g/issues"
+  },
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
   },
   "homepage": "https://github.com/GrzegorzStanczyk/warsawjs-workshop-18-topics-manager-g#readme",
   "devDependencies": {
